@@ -1,0 +1,12 @@
+<h1>List of People</h1>
+
+<ul>
+  <% @people.each do |person| %>
+    <li><%= person.first_name %>
+        <%= person.last_name %>
+        <%= link_to "show", person_path(person.id) %></li>
+        <%= link_to "edit", edit_person_path(person.id) %></li>
+        <%= link_to "delete", person, method: :delete,
+                                      data: {confirm: "Are you sure?"} %>
+  <% end %>
+</ul>
