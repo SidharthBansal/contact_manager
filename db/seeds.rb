@@ -9,7 +9,3 @@
 Person.create(first_name: "Batman", last_name: "Foobar")
 
 Person.create(first_name: "Sidharth", last_name: "Nick")
-
-
-db/seeds.rb
-rake db:seed

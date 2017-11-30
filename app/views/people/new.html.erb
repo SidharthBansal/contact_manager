@@ -1,2 +1,18 @@
-<h1>People#new</h1>
-<p>Find me in app/views/people/new.html.erb</p>
+<% provide(:title, "New Contact") %>
+<h1>New Contact</h1>
+
+
+<%= form_for(@person) do |f| %>
+
+  <%= render 'shared/error_messages' %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, class: "form-control" %>
+
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, class: "form-control" %>
+
+  <%= f.submit 'Submit', class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "<< Back", root_path %>
