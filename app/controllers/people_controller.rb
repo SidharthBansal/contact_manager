@@ -5,15 +5,17 @@ class PeopleController < ApplicationController
   end
 
   def show
-
+    @person = Person.find(params[:id])
   end
 
   def new
     @person = Person.new
+    @error = @person
   end
 
   def create
     @person = Person.new(person_params)
+    @error = @person
     if @person.save
       flash[:success] = "New contact created successfully."
       redirect_to root_path
@@ -25,10 +27,12 @@ class PeopleController < ApplicationController
 
   def edit
     @person = Person.find(params[:id])
+    @error = @person
   end
 
   def update
     @person = Person.find(params[:id])
+    @error = @person
     if @person.update_attributes(person_params)
       flash[:success] = "Contact updated successfully."
       redirect_to root_path

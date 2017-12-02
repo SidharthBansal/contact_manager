@@ -1,7 +1,8 @@
 <% provide(:title, "New Number") %>
 <h1>New Number</h1>
 
-<%= form_for (@phone_number) do |f| %>
+<%= form_for(@phone_number) do |f| %>
+  <%= render 'shared/error_messages' %>
   <%= f.label :number %>
   <%= f.text_field :number, class: "form-control" %>
 

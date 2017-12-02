@@ -5,13 +5,7 @@
   <% @people.each do |person| %>
     <li><%= person.first_name %>
         <%= person.last_name %>
-        <% person.phone_numbers.each do |phone| %>
-          <li><%= phone.number + ", " %></li>
-        <% end %>
-        <%= link_to "show", person_path(person.id) %></li>
-        <%= link_to "edit person", edit_person_path(person.id) %></li>
-        <%= link_to "delete contact", person, method: :delete,
-                                      data: {confirm: "Are you sure?"} %>
+        <%= link_to "show", person_path(person.id) %>
   <% end %>
 </ul>
 

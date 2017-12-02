@@ -3,7 +3,8 @@ require 'test_helper'
 class PhoneNumberTest < ActiveSupport::TestCase
 
   def setup
-    @phone = PhoneNumber.new(number: "015793001", person_id: 1)
+    @person = people(:nick)
+    @phone = PhoneNumber.new(number: "015793001", person_id: @person.id)
   end
 
   test "number should be present" do
@@ -21,4 +22,5 @@ class PhoneNumberTest < ActiveSupport::TestCase
     @phone.number =  "1234"
     assert_not @phone.valid?
   end
+
 end
