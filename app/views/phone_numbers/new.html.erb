@@ -1,5 +1,5 @@
-<h1>PhoneNumbers#new</h1>
-<p>Find me in app/views/phone_numbers/new.html.erb</p>
+<% provide(:title, "New Number") %>
+<h1>New Number</h1>
 
 <%= form_for (@phone_number) do |f| %>
   <%= f.label :number %>

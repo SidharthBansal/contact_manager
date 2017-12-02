@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  number: MyString
-  person_id: 1
-
-two:
-  number: MyString
+phone:
+  number: "18798210"
   person_id: 1

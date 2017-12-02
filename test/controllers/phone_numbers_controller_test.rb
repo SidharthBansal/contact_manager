@@ -1,29 +1,25 @@
 require 'test_helper'
 
 class PhoneNumbersControllerTest < ActionDispatch::IntegrationTest
-  test "should get edit" do
-    get phone_numbers_edit_url
-    assert_response :success
+
+  def setup
+    @phone = phone_numbers(:phone)
+    @base_title = "| ContactManager"
   end
 
   test "should get new" do
-    get phone_numbers_new_url
+    get new_phone_number_path
     assert_response :success
+    assert_select "title", "New Number #{@base_title}"
+    assert_template 'phone_numbers/new'
   end
 
-  test "should get update" do
-    get phone_numbers_update_url
+  test "should get edit" do
+    get edit_phone_number_path(@phone.id)
     assert_response :success
+    assert_select "title", "Edit Number #{@base_title}"
+    assert_template 'phone_numbers/edit'
   end
 
-  test "should get create" do
-    get phone_numbers_create_url
-    assert_response :success
-  end
-
-  test "should get delete" do
-    get phone_numbers_delete_url
-    assert_response :success
-  end
 
 end
