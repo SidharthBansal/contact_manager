@@ -1,5 +1,5 @@
 class Person < ApplicationRecord
-
+  has_many :phone_numbers
   validates :first_name, presence: true,
                          length: {minimum: 3, maximum: 50},
                          format: {with: /\A[a-zA-Z]+\z/,

@@ -1,0 +1,9 @@
+<% provide(:title, "New Number") %>
+<h1>New Number</h1>
+
+<%= form_for (@phone_number) do |f| %>
+  <%= f.label :number %>
+  <%= f.text_field :number, class: "form-control" %>
+
+  <%= f.submit 'Submit', class: "btn btn-primary" %>
+<% end %>
