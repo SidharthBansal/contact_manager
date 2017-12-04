@@ -18,7 +18,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     get person_path(@person.id)
     assert_response :success
     assert_template 'people/show'
-    assert_select 'title',  "Contact #{@base_title}"
+    assert_select 'title',  "#{@person.first_name} #{@base_title}"
   end
 
   test "should get new" do

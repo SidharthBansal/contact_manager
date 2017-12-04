@@ -4,7 +4,7 @@ class PhoneNumberTest < ActiveSupport::TestCase
 
   def setup
     @person = people(:nick)
-    @phone = PhoneNumber.new(number: "015793001", person_id: @person.id)
+    @phone = @person.phone_numbers.build(number: "192749817")
   end
 
   test "number should be present" do

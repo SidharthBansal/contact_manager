@@ -2,7 +2,7 @@
 <h1>New Number</h1>
 
 <%= form_for(@phone_number) do |f| %>
-  <%= render 'shared/error_messages' %>
+  <%= render 'shared/error_messages', object: f.object %>
   <%= f.label :number %>
   <%= f.text_field :number, class: "form-control" %>
 
