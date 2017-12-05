@@ -8,7 +8,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get root_path
+    get people_path
     assert_response :success
     assert_template 'people/index'
     assert_select 'title',  "Index #{@base_title}"
@@ -36,15 +36,3 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   end
 
 end
-
-=begin
-
-root          GET    /                          people#index
-people        POST   /people(.:format)          people#create
-new_person    GET    /people/new(.:format)      people#new
-edit_person   GET    /people/:id/edit(.:format) people#edit
-person        GET    /people/:id(.:format)      people#show
-              PATCH  /people/:id(.:format)      people#update
-              PUT    /people/:id(.:format)      people#update
-              DELETE /people/:id(.:format)      people#destroy
-=end
