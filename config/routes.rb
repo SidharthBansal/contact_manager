@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/signup',     to: 'users#new'
 
-  resources :users
+  resources :users, except: :new
   resources :people
   resources :phone_numbers, except: [:index, :show]
 

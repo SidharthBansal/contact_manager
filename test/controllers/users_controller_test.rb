@@ -13,14 +13,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_user_path
+    get signup_path
     assert_response :success
     assert_template 'users/new'
     assert_select "title", "Sign up #{@base_title}"
   end
 
   test "successful create" do
-    get new_user_path
+    get login_path
     assert_difference "User.count", 1 do
       post users_path :params, user: {
         username: "banana",
@@ -41,7 +41,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "successful update" do
-    get new_user_path
+    get edit_user_path(@user.id)
     patch user_path(@user.id), params: { user: { username: "lemon",
                                                   email: "lemonade@email.com",
                                                   password: "foobar",
