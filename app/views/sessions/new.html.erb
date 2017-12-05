@@ -1,7 +1,7 @@
 <% provide(:title, "Log in") %>
 <h1>Log in</h1>
 
-<%= form_for(:session, url: "/login") do |f| %>
+<%= form_for(:session, url: login_path) do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email,  class: "form-control" %>
 
