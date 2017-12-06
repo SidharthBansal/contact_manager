@@ -6,7 +6,7 @@ batman:
   password_digest: <%= User.digest("foobar") %>
 
 
-ABC:
+abc:
   username: ABC
   email: "abc@gmail.com"
   password_digest: <%= User.digest("chocolate") %>
