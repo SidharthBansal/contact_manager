@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
+    log_in_as(@user)
     get user_path(@user.id)
     assert_response :success
   end
@@ -34,6 +35,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
+    log_in_as(@user)
     get edit_user_path(@user.id)
     assert_response :success
     assert_template 'users/edit'
@@ -41,6 +43,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "successful update" do
+    log_in_as(@user)
     get edit_user_path(@user.id)
     patch user_path(@user.id), params: { user: { username: "lemon",
                                                   email: "lemonade@email.com",
