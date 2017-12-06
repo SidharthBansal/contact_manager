@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
+  has_many :people
 
   before_save :downcase_email
   validates :username, presence: true, uniqueness: true,

@@ -1,5 +1,19 @@
 <%= provide(:title, "Home") %>
 
+
+
+<% if logged_in? %>
+<h2><%= current_user.username %></h2>
+
+<ul>
+  <% current_user.people.each do |person| %>
+    <li><%= person.first_name %>
+        <%= person.last_name %>
+        <%= link_to "show", person_path(person.id) %>
+  <% end %>
+</ul>
+
+<% else %>
 <div class="jumbotron">
   <h1>Welcome to ContactManager!</h1>
   <p>ContactManager is an App for managing your contacts :)</p>
@@ -7,3 +21,4 @@
     <%= link_to "Sign up now!", signup_path, class: "btn btn-primary" %>
   </div>
 </div>
+ <% end %>

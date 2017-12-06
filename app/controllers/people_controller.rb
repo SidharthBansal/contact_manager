@@ -13,7 +13,8 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(person_params)
+    @user = current_user
+    @person = @user.people.build(person_params)
     if @person.save
       flash[:success] = "New contact created successfully."
       redirect_to root_path

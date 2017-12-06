@@ -19,5 +19,5 @@
     </li>
     <% end %>
 </ul>
-<p><%= link_to "Add phone number", new_phone_number_path %></p>
+<p><%= link_to "Add phone number", new_phone_number_path(person: @person) %></p>
 <p><%= link_to "<< Back", root_path %></p>

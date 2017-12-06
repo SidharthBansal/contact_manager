@@ -2,11 +2,13 @@ class PhoneNumbersController < ApplicationController
 
 
   def new
+    @person = Person.find_by(id: params[:person])
     @phone_number = PhoneNumber.new
   end
 
   def create
-    @phone_number = PhoneNumber.new(phone_params)
+    @person = Person.find_by(id: params[:phone_number][:user_id])
+    @phone_number = @person.phone_numbers.build(phone_params)
     if @phone_number.save
       flash[:success] = "New phone number added."
       redirect_to root_path
@@ -29,7 +31,7 @@ class PhoneNumbersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     PhoneNumber.find(params[:id]).destroy
     flash[:success] = "Phone number deleted."
     redirect_to root_path
