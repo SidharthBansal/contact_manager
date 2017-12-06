@@ -8,10 +8,15 @@
   <%= f.label :password %>
   <%= f.password_field :password, class: "form-control" %>
 
-
-
   <%= f.submit "Log in", class: "btn btn-primary" %><br>
+
+  <%= f.label :remember_me, class: "checkbox indline" do %>
+    <%= f.check_box :remember_me %>
+    <span>Remember me on this computer</span>
+  <% end %>
+
   <%= link_to "<< Back", root_path, class: "back-link" %>
+
   <p class="signup-link"> Not registered? <%= link_to "Sign up!", login_path %></p>
 
 

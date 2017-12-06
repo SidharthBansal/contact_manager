@@ -39,22 +39,9 @@ module SessionsHelper
 
   # Logs out a user.
   def log_out
-    #forget(current_user)
+    forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
-=begin
-  ..........E
 
-  Error:
-  UsersLoginTest#test_login_with_valid_information_followed_by_logout:
-  NoMethodError: undefined method `forget' for #<User:0x000000072d64f8>
-      app/helpers/sessions_helper.rb:30:in `forget'
-      app/helpers/sessions_helper.rb:42:in `log_out'
-      app/controllers/sessions_controller.rb:18:in `destroy'
-      test/integration/users_login_test.rb:44:in `block in <class:UsersLoginTest>'
-
-
-
-=end
 end
