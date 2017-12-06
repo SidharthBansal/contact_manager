@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
+
   before_save :downcase_email
   validates :username, presence: true, uniqueness: true,
                        length: {minimum: 3, maximum: 20},
@@ -20,6 +22,17 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  # Returns a random token
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # Remembers a user in the database for use in persistent sessions.
+  def remember
+    self.remember_token =
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 
   private
