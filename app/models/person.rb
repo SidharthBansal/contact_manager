@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
   belongs_to :user
-  has_many :phone_numbers
+  has_many :phone_numbers, dependent: :destroy
 
   default_scope -> { order(:first_name) }
 
