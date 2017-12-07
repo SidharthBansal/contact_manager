@@ -3,18 +3,14 @@ require 'test_helper'
 class PeopleControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @person = people(:nick)
+    @user = users(:batman)
+    @person = @user.people.create!(first_name: "Jim", last_name: "Foobar")
     @base_title = "| ContactManager"
   end
 
-  test "should get index" do
-    get people_path
-    assert_response :success
-    assert_template 'people/index'
-    assert_select 'title',  "Index #{@base_title}"
-  end
 
   test "should get show" do
+    log_in_as(@user)
     get person_path(@person.id)
     assert_response :success
     assert_template 'people/show'
@@ -22,6 +18,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    log_in_as(@user)
     get new_person_path
     assert_response :success
     assert_template 'people/new'
@@ -29,6 +26,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
+    log_in_as(@user)
     get edit_person_path(@person.id)
     assert_response :success
     assert_template 'people/edit'

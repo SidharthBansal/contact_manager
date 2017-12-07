@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
 
-  def index
-    @people = Person.all
-  end
+  before_action :logged_in_user
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+
 
   def show
     @person = Person.find(params[:id])
@@ -51,5 +51,20 @@ class PeopleController < ApplicationController
 
   def person_params
     params.require(:person).permit(:first_name, :last_name)
+  end
+
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in"
+      redirect_to login_path
+    end
+  end
+
+  def correct_user
+    @person = Person.find(params[:id])
+    unless current_user.id == @person.user_id
+      redirect_to root_path
+    end
   end
 end

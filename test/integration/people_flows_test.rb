@@ -4,7 +4,7 @@ class PeopleFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:batman)
-    @person = people(:nick)
+    @person = @user.people.create!(first_name: "Jim", last_name: "Foobar")
   end
 
   test "invalid person information" do

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/signup',     to: 'users#new'
 
   resources :users, except: :new
-  resources :people
+  resources :people, except: [:index]
   resources :phone_numbers, except: [:index, :show]
   resources :emails, except: [:index, :show]
 
