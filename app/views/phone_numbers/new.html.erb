@@ -1,6 +1,6 @@
 <% provide(:title, "New Number") %>
-<h1>New Number</h1>
-<%= @person.first_name %>
+<h2>New phone number for  <%= @person.first_name %></h2>
+
 
 <%= form_for(@phone_number) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>

@@ -22,12 +22,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, params: { session: { email:    @user.email,
                                           password: 'foobar' } }
-    assert_redirected_to @user
+    assert_redirected_to root_path
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'pages/home'
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", user_path(@user)
+    assert_select "a[href=?]", root_path
     assert is_logged_in?
     # Log out once
     delete logout_path
