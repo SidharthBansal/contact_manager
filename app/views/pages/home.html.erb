@@ -3,15 +3,22 @@
 
 
 <% if logged_in? %>
-<h2><%= current_user.username %></h2>
+<h2><%= current_user.username %>'s Contacts</h2>
 
-<ul>
-  <% current_user.people.each do |person| %>
-    <li><%= person.first_name %>
-        <%= person.last_name %>
-        <%= link_to "show", person_path(person.id) %>
-  <% end %>
-</ul>
+<div class="col-md-6">
+  <ul>
+    <% @people.each do |person| %>
+      <li><%= person.first_name %>
+          <%= person.last_name %>
+          <span class="pull-right">
+          <%= link_to "show", person_path(person.id) %>
+        </span>
+    <% end %>
+  </ul>
+  <%= will_paginate @people %>
+</div>
+
+
 
 <% else %>
 <div class="jumbotron">

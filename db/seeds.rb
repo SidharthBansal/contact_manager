@@ -9,4 +9,19 @@
 User.create(username: "Batman", email: "batman@email.com",
             password:"foobar", password_confirmation: "foobar")
 
-Person.create(first_name: "Sidharth", last_name: "Nick")
+30.times do
+  Person.create(first_name: Faker::Name.first_name,
+                last_name:  Faker::Name.last_name,
+                user_id: 1)
+end
+
+30.times do |n|
+  PhoneNumber.create(number: Faker::Number.number(10),
+                     person_id: n )
+end
+
+30.times do |n|
+  PhoneNumber.create(number: Faker::Number.number(10),
+                     person_id: n )
+  n += 1
+end
