@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, except: :new
   resources :people
   resources :phone_numbers, except: [:index, :show]
+  resources :emails, except: [:index, :show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

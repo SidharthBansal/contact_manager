@@ -1,0 +1,6 @@
+<% provide(:title, "New Email") %>
+<% provide(:button_text, "Add") %>
+<h2>New email for  <%= @person.first_name %></h2>
+
+
+<%= render 'emails/email_form' %>
