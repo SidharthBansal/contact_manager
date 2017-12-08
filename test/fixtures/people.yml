@@ -3,7 +3,9 @@
 nick:
   first_name: Nick
   last_name: Santiago
+  user_id: 1
 
 sidharth:
   first_name: Sidharth
   last_name: Bansal
+  user_id: 1

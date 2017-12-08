@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
 
-  def index
-    @people = Person.all
-  end
+  before_action :logged_in_user
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+
 
   def show
     @person = Person.find(params[:id])
@@ -10,14 +10,12 @@ class PeopleController < ApplicationController
 
   def new
     @person = Person.new
-    @error = @person
   end
 
   def create
-    @person = Person.new(person_params)
-    @phone_numbers = PhoneNumber.new(number_params)
-    @error = @person
-    if @person.save && @phone_numbers.save
+    @user = current_user
+    @person = @user.people.build(person_params)
+    if @person.save
       flash[:success] = "New contact created successfully."
       redirect_to root_path
     else
@@ -28,12 +26,10 @@ class PeopleController < ApplicationController
 
   def edit
     @person = Person.find(params[:id])
-    @error = @person
   end
 
   def update
     @person = Person.find(params[:id])
-    @error = @person
     if @person.update_attributes(person_params)
       flash[:success] = "Contact updated successfully."
       redirect_to root_path
@@ -57,7 +53,23 @@ class PeopleController < ApplicationController
     params.require(:person).permit(:first_name, :last_name)
   end
 
+<<<<<<< HEAD
   def number_params
     params.require(:phone_numbers).permit(:number, :person_id)
+=======
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in"
+      redirect_to login_path
+    end
+  end
+
+  def correct_user
+    @person = Person.find(params[:id])
+    unless current_user.id == @person.user_id
+      redirect_to root_path
+    end
+>>>>>>> 6869304ab95a8824b73b4a1a0e62b91f335f03ed
   end
 end

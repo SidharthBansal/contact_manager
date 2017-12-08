@@ -1,0 +1,34 @@
+<%= provide(:title, "Home") %>
+
+
+
+<% if logged_in? %>
+<h2><%= current_user.username %>'s Contacts</h2>
+
+<div class="col-md-6">
+  <ul>
+    <% @people.each do |person| %>
+      <li><%= person.first_name %>
+          <%= person.last_name %>
+          <span class="pull-right">
+          <%= link_to "show", person_path(person.id) %>
+        </span>
+    <% end %>
+  </ul>
+  <%= will_paginate @people %>
+
+  <br><%= link_to "Add Contact", new_person_path %>
+</div>
+
+
+
+
+<% else %>
+<div class="jumbotron">
+  <h1>Welcome to ContactManager!</h1>
+  <p>ContactManager is an App for managing your contacts :)</p>
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-primary" %>
+  </div>
+</div>
+ <% end %>

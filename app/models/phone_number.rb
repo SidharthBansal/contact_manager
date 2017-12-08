@@ -1,5 +1,5 @@
 class PhoneNumber < ApplicationRecord
- belongs_to :person, dependent: :destroy
+ belongs_to :person
 
  validates :number, uniqueness: true,
                     length: {minimum: 5}

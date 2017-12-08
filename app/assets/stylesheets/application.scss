@@ -10,10 +10,38 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ /*= require_tree .
+ /*= require_self
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+/* Universal */
+
 ul {
   list-style-type: none;
+}
+
+.btn {
+  width: 100%;
+}
+
+/* Forms */
+
+form {
+  margin-top: 20px;
+}
+form input {
+  margin-bottom: 20px;
+}
+
+form .back-link {
+  display: inline-block;
+  margin-top: 10px ;
+}
+
+form .signup-link {
+  float: right;
+  display: inline-block;
+  margin-top: 10px ;
 }

@@ -6,6 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Person.create(first_name: "Batman", last_name: "Foobar")
+User.create(username: "Batman", email: "batman@email.com",
+            password:"foobar", password_confirmation: "foobar")
 
-Person.create(first_name: "Sidharth", last_name: "Nick")
+
+
+for n in 1...30 do
+
+  name = Faker::Name.first_name
+
+  Person.create(first_name: name,
+                last_name:  Faker::Name.last_name,
+                user_id: 1)
+
+  PhoneNumber.create(number: Faker::Number.number(10),
+                     person_id: n )
+
+  PhoneNumber.create(number: Faker::Number.number(10),
+                     person_id: n ) if n % 2 == 0
+
+  Email.create(email: "#{name}@email.com",
+               person_id: n )
+
+  Email.create(email: "#{name}#{n}@email.com",
+               person_id: n ) if n % 2 == 0
+
+end
