@@ -12,25 +12,27 @@
   <ul>
     <% @person.phone_numbers.each do |phone| %>
       <li><%= "#{phone.number}" %>
-        <%= link_to "Edit", edit_phone_number_path(phone.id, person: @person) %>
-        <%= link_to "Delete", phone, method: :delete,
+        <%= link_to "Edit", edit_person_phone_number_path(@person.id, phone.id) %>
+        <%= link_to "Delete", person_phone_number_path(@person.id, phone.id),
+                                     method: :delete,
                                      data: {confirm: "Are you sure"}%>
       </li>
       <% end %>
   </ul>
-  <p><%= link_to "Add phone number", new_phone_number_path(person: @person) %></p>
+  <p><%= link_to "Add phone number", new_person_phone_number_path(@person.id) %></p>
 </div>
+
 <div class="col-md-4">
   <p><%= "Email".pluralize(@person.phone_numbers.count) %>:</p>
   <ul>
     <% @person.emails.each do |email| %>
       <li><%= "#{email.email}" %>
-        <%= link_to "Edit", edit_email_path(email.id, person: @person) %>
-        <%= link_to "Delete", email, method: :delete,
+        <%= link_to "Edit", edit_person_email_path(@person.id, email.id) %>
+        <%= link_to "Delete", person_email_path(@person.id, email.id), method: :delete,
                                      data: {confirm: "Are you sure"}%>
       </li>
       <% end %>
   </ul>
-  <p><%= link_to "Add email", new_email_path(person: @person) %></p>
+  <p><%= link_to "Add email",  new_person_email_path(@person.id) %></p>
 </div>
 <p><%= link_to "<< Back", root_path %></p>

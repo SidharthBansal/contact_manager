@@ -2,12 +2,12 @@ class PhoneNumbersController < ApplicationController
 
 
   def new
-    @person = Person.find_by(id: params[:person])
+    @person = Person.find(params[:person_id])
     @phone_number = PhoneNumber.new
   end
 
   def create
-    @person = Person.find_by(id: params[:phone_number][:user_id])
+    @person = Person.find(params[:person_id])
     @phone_number = @person.phone_numbers.build(phone_params)
     if @phone_number.save
       flash[:success] = "New phone number added."
@@ -18,12 +18,12 @@ class PhoneNumbersController < ApplicationController
   end
 
   def edit
-    @person = Person.find_by(id: params[:person])
+    @person = Person.find(params[:person_id])
     @phone_number = PhoneNumber.find(params[:id])
   end
 
   def update
-    @person = Person.find_by(id: params[:phone_number][:user_id])
+    @person = Person.find(params[:person_id])
     @phone_number = PhoneNumber.find(params[:id])
     if @phone_number.update_attributes(phone_params)
       flash[:success] = "Phone number updated."

@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get '/signup',     to: 'users#new'
 
   resources :users, except: :new
-  resources :people, except: [:index]
-  resources :phone_numbers, except: [:index, :show]
-  resources :emails, except: [:index, :show]
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :people, except: [:index] do
+    resources :phone_numbers, except: [:index, :show]
+    resources :emails, except: [:index, :show]
+  end
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

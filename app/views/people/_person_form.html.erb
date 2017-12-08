@@ -1,0 +1,25 @@
+
+<%= form_for(@person) do |f|  %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, class: "form-control" %>
+
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, class: "form-control" %>
+
+  <%= fields_for :phone_numbers do |p| %>
+    <%= p.label :number %>
+    <%= p.text_field :number, class: "form-control" %>
+  <% end %>
+
+  <%= fields_for :emails do |e| %>
+    <%= e.label :email %>
+    <%= e.text_field :email, class: "form-control" %>
+  <% end %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "<< Back", root_path %>

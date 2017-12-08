@@ -2,10 +2,10 @@ class PeopleController < ApplicationController
 
   before_action :logged_in_user
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_person, only: [:show, :edit, :update, :destroy]
 
   def show
-    @person = Person.find(params[:id])
+
   end
 
   def new
@@ -15,6 +15,8 @@ class PeopleController < ApplicationController
   def create
     @user = current_user
     @person = @user.people.build(person_params)
+    @phone_number = @person.phone_numbers.build(phone_number_params) unless @phone_number.blank?
+    @email = @person.emails.build(email_params) unless @email.blank?
     if @person.save
       flash[:success] = "New contact created successfully."
       redirect_to root_path
@@ -25,14 +27,13 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.find(params[:id])
+
   end
 
   def update
-    @person = Person.find(params[:id])
     if @person.update_attributes(person_params)
       flash[:success] = "Contact updated successfully."
-      redirect_to root_path
+      redirect_to @person
     else
       # Errors handled by error_messages.html.erb partial
       render 'edit'
@@ -41,11 +42,10 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-    Person.find(params[:id]).destroy
-    flash[:success] = "Contact deleted."
+    @person.destroy
+    flash[:success] = "#{@person.first_name} #{@person.last_name} deleted."
     redirect_to root_path
   end
-
 
   private
 
@@ -53,10 +53,16 @@ class PeopleController < ApplicationController
     params.require(:person).permit(:first_name, :last_name)
   end
 
-<<<<<<< HEAD
-  def number_params
-    params.require(:phone_numbers).permit(:number, :person_id)
-=======
+  def phone_number_params
+    params.require(:phone_numbers).permit(:number)
+  end
+
+  def email_params
+    params.require(:emails).permit(:email)
+  end
+
+  # Before action
+
   def logged_in_user
     unless logged_in?
       store_location
@@ -70,6 +76,10 @@ class PeopleController < ApplicationController
     unless current_user.id == @person.user_id
       redirect_to root_path
     end
->>>>>>> 6869304ab95a8824b73b4a1a0e62b91f335f03ed
   end
+
+  def find_person
+    @person = Person.find(params[:id])
+  end
+
 end

@@ -11,7 +11,7 @@ class PhoneNumbersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     log_in_as(@user)
-    get new_phone_number_path(person: @person)
+    get new_person_phone_number_path(@person.id)
     assert_response :success
     assert_select "title", "New Number #{@base_title}"
     assert_template 'phone_numbers/new'
@@ -19,11 +19,10 @@ class PhoneNumbersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     log_in_as(@user)
-    get edit_phone_number_path(@phone.id, person: @person)
+    get edit_person_phone_number_path(@person.id, @phone.id)
     assert_response :success
     assert_select "title", "Edit Number #{@base_title}"
     assert_template 'phone_numbers/edit'
   end
-
 
 end

@@ -1,14 +1,5 @@
 <% provide(:title, "New Number") %>
+<% provide(:button_text, "Create") %>
 <h2>New phone number for  <%= @person.first_name %></h2>
 
-
-<%= form_for(@phone_number) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.hidden_field :user_id, value: @person.id %>
-
-  <%= f.label :number %>
-  <%= f.text_field :number, class: "form-control" %>
-
-  <%= f.submit 'Submit', class: "btn btn-primary" %>
-<% end %>
+<%= render 'phone_number_form' %>

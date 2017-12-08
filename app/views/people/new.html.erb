@@ -1,24 +1,5 @@
 <% provide(:title, "New Contact") %>
+<%= provide(:button_text, "Add") %>
 <h1>New Contact</h1>
 
-
-<%= form_for(@person) do |f|  %>
-
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, class: "form-control" %>
-
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, class: "form-control" %>
-
-    <%= fields_for :phone_numbers do |p| %>
-      <%= p.hidden_field :person_id, value: @person.id %>
-      <%= p.label :number %>
-      <%= p.text_field :number, class: "form-control" %>
-    <% end %>
-
-  <%= f.submit 'Submit', class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to "<< Back", root_path %>
+<%= render 'person_form' %>
