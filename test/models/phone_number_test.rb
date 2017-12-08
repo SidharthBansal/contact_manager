@@ -7,11 +7,6 @@ class PhoneNumberTest < ActiveSupport::TestCase
     @phone = PhoneNumber.new(number: "015793001", person_id: @person.id)
   end
 
-  test "number should be present" do
-    @phone.number = ""
-    assert_not @phone.valid?
-  end
-
   test "number should be unique" do
     copy = @phone.dup
     @phone.save

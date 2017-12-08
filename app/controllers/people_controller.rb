@@ -15,8 +15,9 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    @phone_numbers = PhoneNumber.new(number_params)
     @error = @person
-    if @person.save
+    if @person.save && @phone_numbers.save
       flash[:success] = "New contact created successfully."
       redirect_to root_path
     else
@@ -54,5 +55,9 @@ class PeopleController < ApplicationController
 
   def person_params
     params.require(:person).permit(:first_name, :last_name)
+  end
+
+  def number_params
+    params.require(:phone_numbers).permit(:number, :person_id)
   end
 end

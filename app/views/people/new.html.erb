@@ -12,6 +12,12 @@
   <%= f.label :last_name %>
   <%= f.text_field :last_name, class: "form-control" %>
 
+    <%= fields_for :phone_numbers do |p| %>
+      <%= p.hidden_field :person_id, value: @person.id %>
+      <%= p.label :number %>
+      <%= p.text_field :number, class: "form-control" %>
+    <% end %>
+
   <%= f.submit 'Submit', class: "btn btn-primary" %>
 <% end %>
 
