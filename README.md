@@ -1,24 +1,12 @@
-# README
+# Contact Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Contact Manager to learn and practice Ruby on Rails.
 
-Things you may want to cover:
+In this contact manager we used:
 
-* Ruby version
+* Authentication and authorization
+* ApplicationRecord relationships
+* Nested resources
+* Pagination using [will_paginate gem](https://github.com/mislav/will_paginate)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is being worked on in collaboration by [Nicolas Santiago Blair](https://github.com/nsantiagoblair) and [Sidharth Bansal](https://github.com/SidharthBansal)
