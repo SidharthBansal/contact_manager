@@ -4,9 +4,13 @@ batman:
   username: "Batman"
   email: "batman@email.com"
   password_digest: <%= User.digest("foobar") %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 
 abc:
   username: ABC
   email: "abc@gmail.com"
   password_digest: <%= User.digest("chocolate") %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
