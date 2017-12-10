@@ -1,4 +1,4 @@
-class AccountActivationController < ApplicationController
+class AccountsActivationController < ApplicationController
 
   def edit
     user = User.find_by(email: params[:email])
