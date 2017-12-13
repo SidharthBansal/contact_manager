@@ -1,0 +1,6 @@
+<h1>ContactManager</h1>
+
+<p> Hi <%= @user.username %>, <p>
+<p> Welcome to ContactManager! Click on the link below to activate your account: </p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
