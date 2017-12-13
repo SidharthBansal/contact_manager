@@ -5,7 +5,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:batman)
-    @other_user = users(:abc)
+    @other_user = users(:robin)
   end
 
   test "successful edit with friendly forwarding" do

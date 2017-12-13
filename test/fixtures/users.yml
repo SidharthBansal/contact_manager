@@ -2,15 +2,15 @@
 
 batman:
   username: "Batman"
-  email: "batman@email.com"
+  email: "batman@example.com"
   password_digest: <%= User.digest("foobar") %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
 
-abc:
-  username: ABC
-  email: "abc@gmail.com"
+robin:
+  username: "Robin"
+  email: "robin@example.com"
   password_digest: <%= User.digest("chocolate") %>
   activated: true
   activated_at: <%= Time.zone.now %>

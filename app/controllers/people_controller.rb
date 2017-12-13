@@ -63,17 +63,10 @@ class PeopleController < ApplicationController
 
   # Before action
 
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in"
-      redirect_to login_path
-    end
-  end
-
   def correct_user
     @person = Person.find(params[:id])
     unless current_user.id == @person.user_id
+      flash[:danger] = "#{@person.fist_name} doesn't belong to you"
       redirect_to root_path
     end
   end

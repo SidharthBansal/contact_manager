@@ -1,5 +1,6 @@
 class EmailsController < ApplicationController
   before_action :find_person
+  before_action :logged_in_user
 
   def new
     @person = Person.find(params[:person_id])
