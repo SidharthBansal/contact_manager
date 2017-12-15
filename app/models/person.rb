@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   belongs_to :user
   has_many :phone_numbers, dependent: :destroy
   has_many :emails, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
   default_scope -> { order(:first_name) }
 
