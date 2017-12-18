@@ -8,9 +8,9 @@ class AddressesController < ApplicationController
 
   def create
     @address = @person.addresses.build(address_params)
-    if @address.save?
+    if @address.save
       message = "Address was successfully added to "
-      message += "#{@person.first_name} #{@person.second_name}"
+      message += "#{@person.first_name} #{@person.last_name}"
       flash[:success] =  message
       redirect_to @person
     else
