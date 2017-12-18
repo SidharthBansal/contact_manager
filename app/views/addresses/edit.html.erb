@@ -1,2 +1,6 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<% provide(:title, "Edit Address") %>
+<% provide(:button_text, "Update") %>
+<h2>Edit <%= @person.first_name %>'s' address</h2>
+
+
+<%= render 'addresses/address_form' %>

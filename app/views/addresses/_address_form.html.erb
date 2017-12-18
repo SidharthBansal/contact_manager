@@ -1,0 +1,12 @@
+
+
+<%= form_for [@person, @address] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "<< Back", person_path(@person.id) %>

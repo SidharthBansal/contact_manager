@@ -1,2 +1,6 @@
-<h1>Addresses#new</h1>
-<p>Find me in app/views/addresses/new.html.erb</p>
+<% provide(:title, "New Address") %>
+<% provide(:button_text, "Add Address") %>
+
+<h2>New Address for <%= @person.first_name %> </h2>
+
+<%= render 'addresses/address_form' %>
