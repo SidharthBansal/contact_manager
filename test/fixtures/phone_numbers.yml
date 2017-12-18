@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 phone:
+  id: 1
   number: "18798210"
   person_id: 1

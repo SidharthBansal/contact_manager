@@ -30,13 +30,13 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @person
   end
 
-  test "should get edit" do
+  test "should edit" do
     get edit_person_address_path(@person.id, @address.id)
     assert_response :success
     assert_select "title", "Edit Address #{@base_title}"
   end
 
-  test "should get update" do
+  test "should update" do
     log_in_as(@user)
     get edit_person_address_path(@person.id, @address.id)
     patch person_address_path(@person.id, @address.id), params: { address: { address: "House No 41",
@@ -51,17 +51,13 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "House No 41", @address.address
     assert_equal "New York", @address.city
   end
-=begin
-FAIL["test_should_get_update", AddressesControllerTest, 1.633212443033699]
-test_should_get_update#AddressesControllerTest (1.63s)
-       Expected response to be a redirect to <http://www.example.com/people/1/addresses/1055861687> but was a redirect to <http://www.example.com/people/1>.
-       Expected "http://www.example.com/people/1/addresses/1055861687" to be === "http://www.example.com/people/1".
-       test/controllers/addresses_controller_test.rb:50:in `block in <class:AddressesControllerTest>'
 
- 102/102: [==============================================================================================] 100% Time: 00:00:03, Time: 00:00:03
+  test "should delete"  do
+    assert_difference "Address.count", -1 do
+      delete person_address_path(@person.id, @address.id)
+    end
+    assert_not flash.empty?
+    assert_redirected_to @person
+  end
 
-
-
-
-=end
 end

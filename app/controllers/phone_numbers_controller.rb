@@ -35,10 +35,10 @@ class PhoneNumbersController < ApplicationController
   end
 
   def destroy
-    @person = Person.find_by(id: params[:person])
+    @person = Person.find_by(id: params[:person_id])
     PhoneNumber.find(params[:id]).destroy
     flash[:success] = "Phone number deleted."
-    redirect_to request.env["HTTP_REFERER"]
+    redirect_to @person
   end
 
   private
