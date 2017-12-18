@@ -4,7 +4,7 @@
 <h2><%="#{@person.first_name} #{@person.last_name}" %></h2>
 <p><%= link_to "Edit Contact", edit_person_path(@person.id)%>
    <%= link_to "Delete Contact", @person, method: :delete,
-                                          data: {confirm: "Are you sure?"}%></p>
+                                          data: {confirm: "Are you sure?"} %></p>
 
 
 <div class="col-md-4">
@@ -15,7 +15,7 @@
         <%= link_to "Edit", edit_person_phone_number_path(@person.id, phone.id) %>
         <%= link_to "Delete", person_phone_number_path(@person.id, phone.id),
                                      method: :delete,
-                                     data: {confirm: "Are you sure"}%>
+                                     data: {confirm: "Are you sure"} %>
       </li>
       <% end %>
   </ul>
@@ -29,10 +29,29 @@
       <li><%= "#{email.email}" %>
         <%= link_to "Edit", edit_person_email_path(@person.id, email.id) %>
         <%= link_to "Delete", person_email_path(@person.id, email.id), method: :delete,
-                                     data: {confirm: "Are you sure"}%>
+                                     data: {confirm: "Are you sure"} %>
       </li>
       <% end %>
   </ul>
   <p><%= link_to "Add email",  new_person_email_path(@person.id) %></p>
 </div>
+
+<div class="col-md-4">
+  <p><%= "Address".pluralize(@person.addresses.count) %>:</p>
+  <ul>
+    <% @person.addresses.each do |address| %>
+      <li><%= "#{address.address}" %></li>
+      <li><%= "#{address.city}, #{address.postcode}" %></li>
+      <li><%= "#{address.state}, #{address.country}" %></li>
+
+      <%= link_to "Edit", edit_person_address_path(@person.id, address.id) %>
+      <%= link_to "Delete", person_address_path(@person.id, address.id), method: :delete,
+                                                                         data: {confirm: "Are you sure"} %>
+      <br /><br />
+    <% end %>
+
+  </ul>
+  <p><%= link_to "Add address",  new_person_address_path(@person.id) %></p>
+</div>
+
 <p><%= link_to "<< Back", root_path %></p>

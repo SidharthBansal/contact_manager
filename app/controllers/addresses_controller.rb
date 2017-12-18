@@ -33,7 +33,9 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-
+    Address.find(params[:id]).destroy
+    flash[:success] = "Address was removed succesfully"
+    redirect_to @person
   end
 
   private
