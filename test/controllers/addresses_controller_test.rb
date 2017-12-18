@@ -23,7 +23,7 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
                                                                    city: "Delhi",
                                                                    state: "Delhi",
                                                                    country: "India",
-                                                                   postcode: 199293}}
+                                                                   postcode: 199293 } }
     end
     assert_not flash.empty?
     assert_redirected_to @person
@@ -37,27 +37,45 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
 
 
   test "should get update" do
+    log_in_as(@user)
+    get edit_person_address_path(@person.id, @address.id)
     patch person_address_path(@person.id, @address.id), params: { address: { address: "House No 41",
-                                                                             city: "Delhi",
+                                                                             city: "New York",
                                                                              state: "New Delhi",
-                                                                             country: "India",
-                                                                             postcode: 199293 } }
-    assert_not flash.empty?
-    assert_redirected_to @person
-    assert_equal @address.address, @address.address
+                                                                             postcode: 324155,
+                                                                             country: "India"
+                                                                              } }
+    assert_template 'edit'
+    @address.reload
+    assert_equal "House No 41", @address.address
+    assert_equal "New York", @address.city
+
   end
 =begin
+
+test "successful update" do
+  log_in_as(@user)
+  get edit_user_path(@user.id)
+  patch user_path(@user.id), params: { user: { username: "lemon",
+                                                email: "lemonade@email.com",
+                                                password: "foobar",
+                                                password_confirmation: "foobar" } }
+  assert_not flash.empty?
+  assert_redirected_to @user
+end
+
+:address, :city, :state, :postcode, :country
+
+delhi:
+  address: House No 40
+  postcode: 199293
+  city: Delhi
+  country: India
+  state: Delhi
+
   test "should get delete" do
     get person_address(@person.id)
     assert_response :success
   end
 =end
 end
-
-Prefix Verb   URI Pattern                                     Controller#Action
-person_addresses POST   /people/:person_id/addresses(.:format)          addresses#create
-new_person_address GET    /people/:person_id/addresses/new(.:format)      addresses#new
-edit_person_address GET    /people/:person_id/addresses/:id/edit(.:format) addresses#edit
-person_address PATCH  /people/:person_id/addresses/:id(.:format)      addresses#update
-              PUT    /people/:person_id/addresses/:id(.:format)      addresses#update
-              DELETE /people/:person_id/addresses/:id(.:format)      addresses#destroy
