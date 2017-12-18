@@ -19,7 +19,8 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "Email.count", 1 do
       post person_emails_path(@person.id),
                                 params: { email: {
-                                            email: "email@email.com" } }
+                                          email: "email@email.com",
+                                          person_id: @person.id } }
     end
     assert_redirected_to @person
   end
