@@ -23,7 +23,8 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
                                                                    city: "Delhi",
                                                                    state: "Delhi",
                                                                    country: "India",
-                                                                   postcode: 199293 } }
+                                                                   postcode: 199293,
+                                                                   person_id: @person.id } }
     end
     assert_not flash.empty?
     assert_redirected_to @person
@@ -35,7 +36,6 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "Edit Address #{@base_title}"
   end
 
-
   test "should get update" do
     log_in_as(@user)
     get edit_person_address_path(@person.id, @address.id)
@@ -43,39 +43,25 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
                                                                              city: "New York",
                                                                              state: "New Delhi",
                                                                              postcode: 324155,
-                                                                             country: "India"
-                                                                              } }
-    assert_template 'edit'
+                                                                             country: "India",
+                                                                             person_id: @person.id } }
+    assert_not flash.empty?
+    assert_redirected_to @person
     @address.reload
     assert_equal "House No 41", @address.address
     assert_equal "New York", @address.city
-
   end
 =begin
+FAIL["test_should_get_update", AddressesControllerTest, 1.633212443033699]
+test_should_get_update#AddressesControllerTest (1.63s)
+       Expected response to be a redirect to <http://www.example.com/people/1/addresses/1055861687> but was a redirect to <http://www.example.com/people/1>.
+       Expected "http://www.example.com/people/1/addresses/1055861687" to be === "http://www.example.com/people/1".
+       test/controllers/addresses_controller_test.rb:50:in `block in <class:AddressesControllerTest>'
 
-test "successful update" do
-  log_in_as(@user)
-  get edit_user_path(@user.id)
-  patch user_path(@user.id), params: { user: { username: "lemon",
-                                                email: "lemonade@email.com",
-                                                password: "foobar",
-                                                password_confirmation: "foobar" } }
-  assert_not flash.empty?
-  assert_redirected_to @user
-end
+ 102/102: [==============================================================================================] 100% Time: 00:00:03, Time: 00:00:03
 
-:address, :city, :state, :postcode, :country
 
-delhi:
-  address: House No 40
-  postcode: 199293
-  city: Delhi
-  country: India
-  state: Delhi
 
-  test "should get delete" do
-    get person_address(@person.id)
-    assert_response :success
-  end
+
 =end
 end

@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 nick:
+  id: 1
   first_name: Nick
   last_name: Santiago
   user_id: 1
 
 sidharth:
+  id: 2
   first_name: Sidharth
   last_name: Bansal
   user_id: 1
