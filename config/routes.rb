@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
 
 
+  get 'addresses/show'
+
+  get 'addresses/delete'
+
+  get 'addresses/edit'
+
+  get 'addresses/update'
+
+  get 'addresses/new'
+
+  get 'addresses/create'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
