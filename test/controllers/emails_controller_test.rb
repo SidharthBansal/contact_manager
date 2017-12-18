@@ -29,14 +29,14 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-=begin
   test "should update" do
-    patch person_email_path(@person.id, @email.id),
-                              params: { email: {
-                                          email: "newemail@email.com" } }
+    patch person_email_path(@person.id, @email.id), params: { email: { email: "new@email.com",
+                                                                       person_id: @person.id } }
+    assert_not flash.empty?
     assert_redirected_to @person
+    @email.reload
+    assert_equal "new@email.com", @email.email
   end
-=end
 
   test "should get destroy" do
     assert_difference "Email.count", -1 do
@@ -45,13 +45,3 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @person
   end
 end
-
-=begin
-
-ERROR["test_should_get_destroy", EmailsControllerTest, 1.5047571690010955]
- test_should_get_destroy#EmailsControllerTest (1.50s)
-ActionController::ActionControllerError:         ActionController::ActionControllerError: Cannot redirect to nil!
-            app/controllers/emails_controller.rb:36:in `destroy'
-            test/controllers/emails_controller_test.rb:43:in `block (2 levels) in <class:EmailsControllerTest>'
-            test/controllers/emails_controller_test.rb:42:in `block in <class:EmailsControllerTest>'
-=end
